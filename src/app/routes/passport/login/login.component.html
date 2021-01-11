@@ -1,0 +1,39 @@
+<form nz-form [formGroup]="form" (ngSubmit)="submit()" role="form" class="loginInForm">
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-control>
+      <!--        <nz-form-control [nzErrorTip]="'请输入用户名'">-->
+      <nz-input-group style="height: 50px;" nzSize="large" nzPrefixIcon="user">
+        <input nz-input formControlName="userName" placeholder="请输入用户名"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+
+
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group style="height: 50px;" nzSize="large" nzPrefixIcon="lock">
+        <input nz-input type="password" formControlName="password" placeholder="请输入密码"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item style="margin-bottom: 10px !important;" *ngIf="showCaptcha">
+    <nz-form-control>
+      <nz-input-group style="height: 50px;" nzSize="large" class="flex">
+        <div class="flex1 flex justify-content-center align-items-center">
+          <input style="height: 50px;" nz-input formControlName="captchaVerCode" placeholder="请输入验证码"/>
+        </div>
+        <div class="flex1 flex justify-content-center align-items-center">
+          <img (click)="cl();" [src]="captchaUrl" alt="验证码" class="cp">
+        </div>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <button style="height: 50px;" nz-button type="submit" nzType="primary" nzSize="large" [nzLoading]="http.loading" nzBlock>
+      登录
+    </button>
+  </nz-form-item>
+</form>
